@@ -26,10 +26,10 @@ class EnigmaTest < Minitest::Test
   def test_it_can_encrypt_key
     enigma = Enigma.new
     expected = {
-      A: "02",
-      B: "27",
-      C: "71",
-      D: "15"
+      A: 2,
+      B: 27,
+      C: 71,
+      D: 15
     }
     assert_equal expected, enigma.encrypted_key("02715")
   end
@@ -37,13 +37,37 @@ class EnigmaTest < Minitest::Test
   def test_it_can_encrypt_date
     enigma = Enigma.new
     expected = {
-      A: "1",
-      B: "0",
-      C: "2",
-      D: "5"
+      A: 1,
+      B: 0,
+      C: 2,
+      D: 5
     }
 
     assert_equal expected, enigma.encrypted_date("040895")
+  end
+
+  def test_it_can_generate_shifts
+    enigma = Enigma.new
+    date_hash = {
+      A: 2,
+      B: 27,
+      C: 71,
+      D: 15
+    }
+    key_hash = {
+      A: 1,
+      B: 0,
+      C: 2,
+      D: 5
+    }
+    expected = {
+      A: 3,
+      B: 27,
+      C: 73,
+      D: 20
+    }
+
+    assert_equal expected, enigma.generate_shifts(key_hash, date_hash)
   end
 
 end

@@ -17,9 +17,13 @@ class CipherTest < Minitest::Test
     assert_instance_of Cipher, @cipher
   end
 
-  # def test_it_can_generate_random_number
-  #   #5 digit pad with leading 0s as needed
-  # end
+  def test_it_can_generate_random_number
+    #5 digit pad with leading 0s as needed
+    assert_equal 5, @cipher.key.length
+
+    @cipher.stubs(:rand).returns("02715")
+    assert_equal "02715", @cipher.key
+  end
 
   def test_it_can_create_characters_set
     expected = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
