@@ -1,4 +1,6 @@
-class Enigma
+require_relative './cipher'
+
+class Enigma < Cipher
 
   def encrypt(encryption, key, date)
     encrypted_string = "keder ohulw"
@@ -30,3 +32,8 @@ class Enigma
   end
 
 end
+
+
+#notes for whiteboarding
+#must require 'date'
+#@date = Date.today.strftime("%d/%m/%Y") require ‘date’
