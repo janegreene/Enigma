@@ -42,7 +42,6 @@ class EnigmaTest < Minitest::Test
       C: 2,
       D: 5
     }
-
     assert_equal expected, enigma.encrypted_date("040895")
   end
 
@@ -66,8 +65,56 @@ class EnigmaTest < Minitest::Test
       C: 73,
       D: 20
     }
-
     assert_equal expected, enigma.generate_shifts(key_hash, date_hash)
+  end
+
+  def test_it_can_shift_characters
+    enigma = Enigma.new
+    message = "hello world"
+    shifts = {
+      A: 3,
+      B: 27,
+      C: 73,
+      D: 20
+    }
+    assert_equal "keder ohulw", enigma.shift_message(message, shifts)
+  end
+
+  def test_it_can_shift_characters_leaving_specials
+    enigma = Enigma.new
+    message = "hello!"
+    shifts = {
+      A: 3,
+      B: 27,
+      C: 73,
+      D: 20
+    }
+    assert_equal "keder!", enigma.shift_message(message, shifts)
+  end
+
+  def test_it_can_shift_message
+    enigma = Enigma.new
+    message = "h"
+    shifts = {
+      A: 3,
+      B: 27,
+      C: 73,
+      D: 20
+    }
+    assert_equal "k", enigma.shift_message(message, shifts)
+  end
+
+  def test_it_can_shift_character
+    enigma = Enigma.new
+    assert_equal "d", enigma.shift_character(73, "l")
+    assert_equal "!", enigma.shift_character(3, "!")
+    assert_equal "k", enigma.shift_character(3, "h")
+  end
+
+  def test_it_can_find_index
+    enigma = Enigma.new
+    assert_equal 1, enigma.find_index("b")
+    assert_equal 26, enigma.find_index(" ")
   end
 
 end
