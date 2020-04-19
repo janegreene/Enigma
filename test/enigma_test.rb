@@ -165,6 +165,4 @@ class EnigmaTest < Minitest::Test
   #   expected = {:encryption=>"pm", :key=>"02715", :date=>"190420"}
   #   assert_equal expected, enigma.encrypt("hi")
   # end
-
-
 end

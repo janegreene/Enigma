@@ -10,7 +10,6 @@ class CipherTest < Minitest::Test
   def setup
     Date.stubs(:today).returns(Date.new(1995, 8, 4))
     @cipher = Cipher.new
-
   end
 
   def test_it_exists
@@ -18,7 +17,6 @@ class CipherTest < Minitest::Test
   end
 
   def test_it_can_generate_random_number
-    #5 digit pad with leading 0s as needed
     assert_equal 5, @cipher.key.length
 
     @cipher.stubs(:rand).returns("02715")
