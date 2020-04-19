@@ -3,7 +3,7 @@ require 'date'
 
 class Enigma < Cipher
 
-  def encrypt(message, key = @key, date = @date)
+  def encrypt(message, key = self.key, date = @date)
     shifts = generate_shifts(encrypted_key(key), encrypted_date(date))
     encrypted_string = shift_message(message, shifts)
       {
@@ -13,7 +13,7 @@ class Enigma < Cipher
       }
   end
 
-  def decrypt(ciphertext, key = @key, date = @date)
+  def decrypt(ciphertext, key = self.key, date = @date)
     shifts = generate_shifts(encrypted_key(key), encrypted_date(date))
     decrypt_string = reverse_shift_message(ciphertext, shifts)
     {
