@@ -23,6 +23,17 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.encrypt("hello world", "02715", "040895")
   end
 
+  def test_it_can_decrypt
+    enigma = Enigma.new
+    expected =
+            {
+               decryption: "hello world",
+               key: "02715",
+               date: "040895"
+             }
+     assert_equal expected, enigma.decrypt("keder ohulw", "02715", "040895")
+  end
+
   def test_it_can_encrypt_key
     enigma = Enigma.new
     expected = {
@@ -117,35 +128,41 @@ class EnigmaTest < Minitest::Test
     assert_equal 26, enigma.find_index(" ")
   end
 
-end
+  def test_it_can_reverse_shift_message
+    enigma = Enigma.new
+    message = "k"
+    shifts = {
+      A: 3,
+      B: 27,
+      C: 73,
+      D: 20
+    }
+    assert_equal "h", enigma.reverse_shift_message(message, shifts)
+  end
 
-#
-# # encrypt a message with a key and date
-# pry(main)> enigma.encrypt("hello world", "02715", "040895")
-# #=>
-# #   {
-# #     encryption: "keder ohulw",
-# #     key: "02715",
-# #     date: "040895"
-# #   }
-#
-# # decrypt a message with a key and date
-# pry(main) > enigma.decrypt("keder ohulw", "02715", "040895")
-# #=>
-# #   {
-# #     decryption: "hello world",
-# #     key: "02715",
-# #     date: "040895"
-# #   }
-#
-# # encrypt a message with a key (uses today's date)
-# pry(main)> encrypted = enigma.encrypt("hello world", "02715")
-# #=> # encryption hash here
-#
-# #decrypt a message with a key (uses today's date)
-# pry(main) > enigma.decrypt(encrypted[:encryption], "02715")
-# #=> # decryption hash here
-#
-# # encrypt a message (generates random key and uses today's date)
-# pry(main)> enigma.encrypt("hello world")
-# #=> # encryption hash here
+  def test_it_can_shift_character
+    enigma = Enigma.new
+    assert_equal "l", enigma.reverse_shift_character(73, "d")
+    assert_equal "!", enigma.reverse_shift_character(3, "!")
+    assert_equal "h", enigma.reverse_shift_character(3, "k")
+  end
+
+#######if keeping need to stub########
+  # def test_it_can_encrypt_without_date_provided
+  #   enigma = Enigma.new
+  #   expected = {:encryption=>"pm", :key=>"02715", :date=>"190420"}
+  #   assert_equal expected, enigma.encrypt("hi", "02715", "190420")
+  # end
+
+  # def test_it_can_decrypt_without_date_provided
+  #   enigma = Enigma.new
+  #   expected = {:decryption=>"hi", :key=>"02715", :date=>"190420"}
+  #   assert_equal expected, enigma.decrypt("pm", "02715")
+  # end
+  #
+  # def test_it_can_encrypt_without_key_or_date_provided
+  #   enigma = Enigma.new
+  #   expected = {:encryption=>"pm", :key=>"02715", :date=>"190420"}
+  #   assert_equal expected, enigma.encrypt("hi")
+  # end
+end
