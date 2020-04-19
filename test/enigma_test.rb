@@ -70,20 +70,55 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.generate_shifts(key_hash, date_hash)
   end
 
-  def test_it_can_breakdown_a_message
-    enigma = Enigma.new
-
-    assert_equal [["h", "e", "l", "l"],["o", " ", "w", "o"],["r", "l", "d"]], enigma.breakdown_message("hello WORLD")
-
-    # assert_equal [["k", "e", "d", "e"],["r"," ", "o", "h"], ["u", "l", "w"]],
-    # enigma.breakdown_message("keder ohulw")   will use for decrypt
-  end
+  # def test_it_can_breakdown_a_message
+  #   enigma = Enigma.new
+  #
+  #   assert_equal [["h", "e", "l", "l"],["o", " ", "w", "o"],["r", "l", "d"]], enigma.breakdown_message("hello WORLD")
+  #
+  #   # assert_equal [["k", "e", "d", "e"],["r"," ", "o", "h"], ["u", "l", "w"]],
+  #   # enigma.breakdown_message("keder ohulw")   will use for decrypt
+  # end
 
   def test_it_can_shift_characters
     enigma = Enigma.new
-    broken_message = [["h", "e", "l", "l"],["o", " ", "w", "o"],["r", "l", "d"]]
-    assert_equal "keder ohulw", enigma.shift_characters(broken_message)
+    message = "hello world" #trying with full string
+    # [["h", "e", "l", "l"],["o", " ", "w", "o"],["r", "l", "d"]]
+    shifts = {
+      A: 3,
+      B: 27,
+      C: 73,
+      D: 20
+    }
+    assert_equal "keder ohulw", enigma.shift_message(message, shifts)
   end
+
+  def test_it_can_shift_characters_leaving_specials
+    enigma = Enigma.new
+    message = "hello!" #trying with full string
+    # [["h", "e", "l", "l"],["o", " ", "w", "o"],["r", "l", "d"]]
+    shifts = {
+      A: 3,
+      B: 27,
+      C: 73,
+      D: 20
+    }
+    assert_equal "keder!", enigma.shift_message(message, shifts)
+  end
+
+  def test_it_can_shift_message
+    enigma = Enigma.new
+    message = "h"
+    shifts = {
+      A: 3,
+      B: 27,
+      C: 73,
+      D: 20
+    }
+    assert_equal "k", enigma.shift_message(message, shifts)
+  end
+  #need test for shift character
+  #need test for find inde
+  #do not need breakdown message any longer
 
 end
 

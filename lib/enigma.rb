@@ -4,16 +4,8 @@ require 'date'
 class Enigma < Cipher
 
   def encrypt(message, key = @key, date = @date)
-
     shifts = generate_shifts(encrypted_key(key), encrypted_date(date))
-    shifts[:A]
-    shifts[:B]
-    shifts[:C]
-    shifts[:D]
-    shift_characters(breakdown_message(message), shifts)
-    #now need to take sets of 4 chars to map with the shifts above
-    # require "pry"; binding.pry
-    encrypted_string = "keder ohulw"
+    encrypted_string = shift_message(message, shifts)
       {
         encryption: encrypted_string,
         key: key,
@@ -45,18 +37,43 @@ class Enigma < Cipher
     key_hash.merge!(date_hash) { |k, o, n| o + n }
   end
 
-  def breakdown_message(message)
-    message_breakdown = []
-    message_downcase = message.downcase.split("")
-      message_downcase.each_slice(4) do |set|
-        message_breakdown << set
-      end
-    message_breakdown
+  # def breakdown_message(message)
+  #   message_breakdown = []
+  #   message_downcase = message.downcase.split("")
+  #     message_downcase.each_slice(4) do |set|
+  #       message_breakdown << set
+  #     end
+  #   message_breakdown
+  # end
+
+  def find_index(character)
+     @character_set.index(character)
   end
 
-  def shift_characters(brokendown_message, shifts)
+  def shift_character(shift_number, character)
+    character_index = find_index(character)
+      if character_index
+        new_index = character_index + shift_number
+        @character_set[(new_index % 27)]
+      else
+        character
+      end
+  end
 
-    # require "pry"; binding.pry
+  def shift_message(message, shifts)
+    split_message = message.downcase.split("")
+      split_message.map.with_index do |character, index|
+        if index % 4 == 0
+          shift_character(shifts[:A], character)
+        elsif index % 4 == 1
+          shift_character(shifts[:B], character)
+        elsif index % 4 == 2
+          shift_character(shifts[:C], character)
+        elsif index % 4 == 3
+          shift_character(shifts[:D], character)
+        end
+      end.join
+
   end
 
 end
