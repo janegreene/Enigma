@@ -70,6 +70,15 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.generate_shifts(key_hash, date_hash)
   end
 
+  def test_it_can_breakdown_a_message
+    enigma = Enigma.new
+
+    assert_equal [["h", "e", "l", "l"],["o", " ", "w", "o"],["r", "l", "d"]], enigma.breakdown_message("hello WORLD")
+
+    # assert_equal [["k", "e", "d", "e"],["r"," ", "o", "h"], ["u", "l", "w"]],
+    # enigma.breakdown_message("keder ohulw")   will use for decrypt
+  end
+
 end
 
 #

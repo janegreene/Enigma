@@ -6,7 +6,12 @@ class Enigma < Cipher
   def encrypt(message, key = @key, date = @date)
 
     shifts = generate_shifts(encrypted_key(key), encrypted_date(date))
-
+    shifts[:A]
+    shifts[:B]
+    shifts[:C]
+    shifts[:D]
+    breakdown_message(message)
+    # require "pry"; binding.pry
     encrypted_string = "keder ohulw"
       {
         encryption: encrypted_string,
@@ -37,6 +42,15 @@ class Enigma < Cipher
 
   def generate_shifts(key_hash, date_hash)
     key_hash.merge!(date_hash) { |k, o, n| o + n }
+  end
+
+  def breakdown_message(message)
+    message_breakdown = []
+    message_downcase = message.downcase.split("")
+      message_downcase.each_slice(4) do |set|
+        message_breakdown << set
+      end
+    message_breakdown
   end
 
 end
