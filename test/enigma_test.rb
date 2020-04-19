@@ -42,7 +42,6 @@ class EnigmaTest < Minitest::Test
       C: 2,
       D: 5
     }
-
     assert_equal expected, enigma.encrypted_date("040895")
   end
 
@@ -66,23 +65,12 @@ class EnigmaTest < Minitest::Test
       C: 73,
       D: 20
     }
-
     assert_equal expected, enigma.generate_shifts(key_hash, date_hash)
   end
 
-  # def test_it_can_breakdown_a_message
-  #   enigma = Enigma.new
-  #
-  #   assert_equal [["h", "e", "l", "l"],["o", " ", "w", "o"],["r", "l", "d"]], enigma.breakdown_message("hello WORLD")
-  #
-  #   # assert_equal [["k", "e", "d", "e"],["r"," ", "o", "h"], ["u", "l", "w"]],
-  #   # enigma.breakdown_message("keder ohulw")   will use for decrypt
-  # end
-
   def test_it_can_shift_characters
     enigma = Enigma.new
-    message = "hello world" #trying with full string
-    # [["h", "e", "l", "l"],["o", " ", "w", "o"],["r", "l", "d"]]
+    message = "hello world"
     shifts = {
       A: 3,
       B: 27,
@@ -94,8 +82,7 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_shift_characters_leaving_specials
     enigma = Enigma.new
-    message = "hello!" #trying with full string
-    # [["h", "e", "l", "l"],["o", " ", "w", "o"],["r", "l", "d"]]
+    message = "hello!"
     shifts = {
       A: 3,
       B: 27,
@@ -129,9 +116,6 @@ class EnigmaTest < Minitest::Test
     assert_equal 1, enigma.find_index("b")
     assert_equal 26, enigma.find_index(" ")
   end
-
-  #need test for find inde
-  #do not need breakdown message any longer
 
 end
 

@@ -37,15 +37,6 @@ class Enigma < Cipher
     key_hash.merge!(date_hash) { |k, o, n| o + n }
   end
 
-  # def breakdown_message(message)
-  #   message_breakdown = []
-  #   message_downcase = message.downcase.split("")
-  #     message_downcase.each_slice(4) do |set|
-  #       message_breakdown << set
-  #     end
-  #   message_breakdown
-  # end
-
   def find_index(character)
      @character_set.index(character)
   end
@@ -77,8 +68,3 @@ class Enigma < Cipher
   end
 
 end
-
-
-#notes for whiteboarding
-#must require 'date'
-#@date = Date.today.strftime("%d/%m/%Y") require ‘date’
