@@ -13,6 +13,17 @@ class Enigma < Cipher
       }
   end
 
+  def decrypt(ciphertext, key = @key, date = @date)
+    shifts = generate_shifts(encrypted_key(key), encrypted_date(date))
+    decrypt_string = reverse_shift_message(ciphertext, shifts)
+    {
+       decryption: decrypt_string,
+       key: key,
+       date: date
+     }
+  end
+
+
   def encrypted_key(key)
     {
       A: key[0..1].to_i,
@@ -66,5 +77,34 @@ class Enigma < Cipher
       end.join
 
   end
+
+#added for decrypt
+  def reverse_shift_message(message, shifts)
+    split_message = message.downcase.split("")
+      split_message.map.with_index do |character, index|
+        if index % 4 == 0
+          reverse_shift_character(shifts[:A], character)
+        elsif index % 4 == 1
+          reverse_shift_character(shifts[:B], character)
+        elsif index % 4 == 2
+          reverse_shift_character(shifts[:C], character)
+        elsif index % 4 == 3
+          reverse_shift_character(shifts[:D], character)
+        end
+      end.join
+  end
+
+  def reverse_shift_character(shift_number, character)
+    character_index = find_index(character)
+      if character_index
+        new_index = character_index - shift_number
+        @character_set[(new_index % 27)]
+      else
+        character
+      end
+  end
+
+
+
 
 end
