@@ -116,7 +116,20 @@ class EnigmaTest < Minitest::Test
     }
     assert_equal "k", enigma.shift_message(message, shifts)
   end
-  #need test for shift character
+
+  def test_it_can_shift_character
+    enigma = Enigma.new
+    assert_equal "d", enigma.shift_character(73, "l")
+    assert_equal "!", enigma.shift_character(3, "!")
+    assert_equal "k", enigma.shift_character(3, "h")
+  end
+
+  def test_it_can_find_index
+    enigma = Enigma.new
+    assert_equal 1, enigma.find_index("b")
+    assert_equal 26, enigma.find_index(" ")
+  end
+
   #need test for find inde
   #do not need breakdown message any longer
 
