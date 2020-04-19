@@ -79,6 +79,12 @@ class EnigmaTest < Minitest::Test
     # enigma.breakdown_message("keder ohulw")   will use for decrypt
   end
 
+  def test_it_can_shift_characters
+    enigma = Enigma.new
+    broken_message = [["h", "e", "l", "l"],["o", " ", "w", "o"],["r", "l", "d"]]
+    assert_equal "keder ohulw", enigma.shift_characters(broken_message)
+  end
+
 end
 
 #

@@ -10,7 +10,8 @@ class Enigma < Cipher
     shifts[:B]
     shifts[:C]
     shifts[:D]
-    breakdown_message(message)
+    shift_characters(breakdown_message(message), shifts)
+    #now need to take sets of 4 chars to map with the shifts above
     # require "pry"; binding.pry
     encrypted_string = "keder ohulw"
       {
@@ -51,6 +52,11 @@ class Enigma < Cipher
         message_breakdown << set
       end
     message_breakdown
+  end
+
+  def shift_characters(brokendown_message, shifts)
+
+    # require "pry"; binding.pry
   end
 
 end
