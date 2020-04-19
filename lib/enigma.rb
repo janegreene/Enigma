@@ -25,6 +25,7 @@ class Enigma < Cipher
 
 
   def encrypted_key(key)
+
     {
       A: key[0..1].to_i,
       B: key[1..2].to_i,
