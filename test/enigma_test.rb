@@ -33,7 +33,7 @@ class EnigmaTest < Minitest::Test
              }
      assert_equal expected, enigma.decrypt("keder ohulw", "02715", "040895")
   end
-   
+
   def test_it_can_encrypt_key
     enigma = Enigma.new
     expected = {
@@ -127,6 +127,26 @@ class EnigmaTest < Minitest::Test
     assert_equal 1, enigma.find_index("b")
     assert_equal 26, enigma.find_index(" ")
   end
+
+  def test_it_can_reverse_shift_message
+    enigma = Enigma.new
+    message = "k"
+    shifts = {
+      A: 3,
+      B: 27,
+      C: 73,
+      D: 20
+    }
+    assert_equal "h", enigma.reverse_shift_message(message, shifts)
+  end
+
+  def test_it_can_shift_character
+    enigma = Enigma.new
+    assert_equal "l", enigma.reverse_shift_character(73, "d")
+    assert_equal "!", enigma.reverse_shift_character(3, "!")
+    assert_equal "h", enigma.reverse_shift_character(3, "k")
+  end
+
 
 end
 

@@ -78,7 +78,6 @@ class Enigma < Cipher
 
   end
 
-#added for decrypt
   def reverse_shift_message(message, shifts)
     split_message = message.downcase.split("")
       split_message.map.with_index do |character, index|
@@ -103,8 +102,5 @@ class Enigma < Cipher
         character
       end
   end
-
-
-
 
 end
