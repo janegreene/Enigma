@@ -34,5 +34,4 @@ class EnigmaTest < Minitest::Test
      assert_equal expected, enigma.decrypt("keder ohulw", "02715", "040895")
   end
 
-  
 end

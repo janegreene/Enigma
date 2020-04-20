@@ -24,5 +24,4 @@ class Enigma < Cipher
      }
   end
 
-
 end
