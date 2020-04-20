@@ -140,7 +140,7 @@ class EnigmaTest < Minitest::Test
     assert_equal "h", enigma.reverse_shift_message(message, shifts)
   end
 
-  def test_it_can_shift_character
+  def test_it_can_reverse_shift_character
     enigma = Enigma.new
     assert_equal "l", enigma.reverse_shift_character(73, "d")
     assert_equal "!", enigma.reverse_shift_character(3, "!")
