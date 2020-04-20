@@ -2,23 +2,20 @@ require 'date'
 
 class Cipher
 
-  attr_reader :character_set, :date
+  attr_reader :character_set, :date, :key
 
   def initialize
     @character_set = ('a'..'z').to_a << ' '
     @date = Date.today.strftime('%d%m%y')
+    @key = rand(99999).to_s.rjust(5,"0")
   end
 
-  def key
-    rand(99999).to_s.rjust(5,"0")
-  end
-
-  def encrypted_key(key)
+  def encrypted_key(passed_key)
     {
-      A: key[0..1].to_i,
-      B: key[1..2].to_i,
-      C: key[2..3].to_i,
-      D: key[3..4].to_i
+      A: passed_key[0..1].to_i,
+      B: passed_key[1..2].to_i,
+      C: passed_key[2..3].to_i,
+      D: passed_key[3..4].to_i
     }
   end
 

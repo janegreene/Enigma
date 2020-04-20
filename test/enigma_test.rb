@@ -8,9 +8,11 @@ require './lib/cipher'
 require 'date'
 
 class EnigmaTest < Minitest::Test
+  def setup
+    @enigma = Enigma.new
+  end
   def test_it_exists
-    enigma = Enigma.new
-    assert_instance_of Enigma, enigma
+    assert_instance_of Enigma, @enigma
   end
 
   def test_it_can_encrypt

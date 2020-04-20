@@ -1,5 +1,5 @@
 require_relative './enigma'
-# ruby ./lib/decrypt.rb encrypted.txt decrypted.txt 02715 190420
+# ruby ./lib/decrypt.rb encrypted.txt decrypted.txt 15333 200420
 
 handle = File.open(ARGV[0],"r")
 

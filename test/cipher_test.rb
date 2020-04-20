@@ -18,9 +18,6 @@ class CipherTest < Minitest::Test
 
   def test_it_can_generate_random_number
     assert_equal 5, @cipher.key.length
-
-    @cipher.stubs(:rand).returns("02715")
-    assert_equal "02715", @cipher.key
   end
 
   def test_it_can_create_characters_set
