@@ -140,29 +140,11 @@ class EnigmaTest < Minitest::Test
     assert_equal "h", enigma.reverse_shift_message(message, shifts)
   end
 
-  def test_it_can_shift_character
+  def test_it_can_reverse_shift_character
     enigma = Enigma.new
     assert_equal "l", enigma.reverse_shift_character(73, "d")
     assert_equal "!", enigma.reverse_shift_character(3, "!")
     assert_equal "h", enigma.reverse_shift_character(3, "k")
   end
 
-#######if keeping need to stub########
-  # def test_it_can_encrypt_without_date_provided
-  #   enigma = Enigma.new
-  #   expected = {:encryption=>"pm", :key=>"02715", :date=>"190420"}
-  #   assert_equal expected, enigma.encrypt("hi", "02715", "190420")
-  # end
-
-  # def test_it_can_decrypt_without_date_provided
-  #   enigma = Enigma.new
-  #   expected = {:decryption=>"hi", :key=>"02715", :date=>"190420"}
-  #   assert_equal expected, enigma.decrypt("pm", "02715")
-  # end
-  #
-  # def test_it_can_encrypt_without_key_or_date_provided
-  #   enigma = Enigma.new
-  #   expected = {:encryption=>"pm", :key=>"02715", :date=>"190420"}
-  #   assert_equal expected, enigma.encrypt("hi")
-  # end
 end
