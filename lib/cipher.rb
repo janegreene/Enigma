@@ -2,7 +2,9 @@ require 'date'
 
 class Cipher
 
-  attr_reader :character_set, :date, :key
+  attr_reader :character_set,
+              :date,
+              :key
 
   def initialize
     @character_set = ('a'..'z').to_a << ' '
